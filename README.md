@@ -20,5 +20,5 @@
 # Actions
 
 - ### Speak - uses espeak to say something
-- ### Open - runs any script which is found in $PATH (WIP-Currently only opens Spotify, Discord and Steam)
+- ### Open - open any application that has a script in path and is listed in APPLICATIONS list. 
 - ### Search - search any text in google search engine
