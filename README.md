@@ -2,14 +2,7 @@
  This is Ghost, a virtual assistant for my machines.
 ---
 
-# 💭 Proposal
-
-- I want to understand better how I can make a virtual assistant, for this I will start building Ghost, a prototype of a virtual assistant.
-
-
----
-
-# Algorithm
+# Description
 
 ### Listen
 
@@ -27,6 +20,6 @@
 
 # Actions
 
-- Speak → uses espeak to speak something
-- Open → runs any script which is found in $PATH
-- Search → search any text in google search engine
+- ### Speak - uses espeak to say something
+- ### Open - runs any script which is found in $PATH (WIP-Currently only opens Spotify, Discord and Steam)
+- ### Search - search any text in google search engine
