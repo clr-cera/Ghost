@@ -1,9 +1,12 @@
 import pyaudio as pa
 import actions
 import recognition as rec
+
 name = 'ghost' #Hi Ghost!
 
 pa.PyAudio()
+
+processList = [] #This stores all processes opened by openStructure
 
 # Main Loop
 
@@ -31,7 +34,8 @@ if __name__ == '__main__':
                     actions.speakStructure(query=query)
 
                 if command == 'open':
-                    actions.openStructure(query=query)
+                    for i in actions.openStructure(query=query):
+                        processList.append(i)
 
                 if command == 'search':
                     actions.searchStructure(query=query)

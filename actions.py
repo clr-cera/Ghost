@@ -1,6 +1,16 @@
 import os
 import multiprocessing
 
+APPLICATIONS = [
+    'spotify',
+    'discord',
+    'steam',
+    'vivaldi',
+    'notion',
+    'code'
+
+]
+
 #This open an app if this app has a command in any $ROOT directories
 def openApp(app):
     os.system(f"{app}")
@@ -16,17 +26,14 @@ def speak(text):
 
 #Structures that check query to choose output 
 def openStructure(query):
-    if 'spotify' in query:
-        procsSpotify = multiprocessing.Process(target=openApp, args=("spotify",))
-        procsSpotify.start()
+    processList = []
 
-    if 'discord' in query:
-        procDiscord = multiprocessing.Process(target=openApp, args=("discord",))
-        procDiscord.start()
+    for i in query:
+        if i in APPLICATIONS:
+            processList.append(multiprocessing.Process(target=openApp, args=(i,)))
+            processList[-1].start()
 
-    if 'steam' in query:
-        procSteam = multiprocessing.Process(target=openApp, args=("steam",))
-        procSteam.start()
+    return(processList)
 
 def searchStructure(query):
     if query[0] =="for":
