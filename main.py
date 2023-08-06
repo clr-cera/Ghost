@@ -39,6 +39,9 @@ if __name__ == '__main__':
 
                 if command == 'search':
                     actions.searchStructure(query=query)
+                    
+                if command == 'shutdown':
+                    actions.shutdownStructure(query=query)
 
 else:
     print("p-p-p-problem")

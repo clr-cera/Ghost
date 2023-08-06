@@ -50,3 +50,5 @@ def speakStructure(query):
     speech = ' '.join(query)
     speak(speech)
 
+def shutdownStructure(query):
+    os.system("shutdown now")
