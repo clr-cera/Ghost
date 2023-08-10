@@ -1,15 +1,17 @@
 import os
 import multiprocessing
 
-APPLICATIONS = [
-    'spotify',
-    'discord',
-    'steam',
-    'vivaldi',
-    'notion',
-    'code'
-
-]
+APPLICATIONS = {
+    'spotify': 'spotify',
+    'discord':'discord',
+    'steam':'steam',
+    'vivaldi':'vivaldi',
+    'notion':'notion',
+    'notion':'notion-app-enhanced',
+    'code':'code',
+    'vscode':'code',
+    'itch':'itch --no-sandbox'
+}
 
 #This open an app if this app has a command in any $ROOT directories
 def openApp(app):
@@ -30,7 +32,7 @@ def openStructure(query):
 
     for i in query:
         if i in APPLICATIONS:
-            processList.append(multiprocessing.Process(target=openApp, args=(i,)))
+            processList.append(multiprocessing.Process(target=openApp, args=(APPLICATIONS[i],)))
             processList[-1].start()
 
     return(processList)
