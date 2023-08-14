@@ -5,11 +5,11 @@ def parseCommand():
     print('Listening for a command')
 
     with sr.Microphone(sample_rate= 48000,chunk_size=8192) as source: 
-        print('Started listeningg')
+        print('Started listening')
         listener.pause_threshold = 1
-        listener.energy_threshold = 35000 #Had severe trouble with the source but after setting its energy treshold it works well!
+        listener.energy_threshold = 32048 #Had severe trouble with the source but after setting its energy treshold it works well!
         listener.dynamic_energy_threshold = True 
-        input_speech = listener.listen(source) 
+        input_speech = listener.listen(source)
         print('Stopped listening')
 
     try:
