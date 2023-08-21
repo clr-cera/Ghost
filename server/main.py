@@ -1,24 +1,27 @@
 import pyaudio as pa
-import actions
-import recognition as rec
+import socket
+import server.actions as actions
+import data.serverData as serverData
 
-name = 'ghost' #Hi Ghost!
-
-pa.PyAudio()
-
-processList = [] #This stores all processes opened by openStructure
-
-# Main Loop
+NAME = 'ghost' #Hi Ghost!
 
 if __name__ == '__main__':
     #speak('All systems nominal.')
 
+
+    s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM,0)         # Create a socket object
+    s.bind((serverData.HOST,serverData.PORT,0,0))
+
+    s.listen(20)                 # Now wait for client connection.
+
+
+
     while True:
         # Parse as a list
         command = ''
-        query = rec.parseCommand().lower().split()
+        query = s.recv(1024).decode().lower().split()
 
-        if query[0] == name:
+        if query[0] == NAME:
             query.pop(0)
 
             if  len(query)!=0:
@@ -42,6 +45,9 @@ if __name__ == '__main__':
                     
                 if command == 'shutdown':
                     actions.shutdownStructure(query=query)
+    
+    s.close()
 
 else:
     print("p-p-p-problem")
+
