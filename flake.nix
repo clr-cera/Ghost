@@ -12,12 +12,23 @@
         pkgs = import nixpkgs {
           inherit system overlays;
         };
+        metadata = (pkgs.lib.importTOML ./Cargo.toml).package;
       in
-      with pkgs;
       {
-        devShells.default = mkShell {
+        packages = rec {
+          default = ghost;
+
+          ghost = pkgs.rustPlatform.buildRustPackage {
+            pname = metadata.name;
+            version = metadata.version;
+            cargoLock.lockFile = ./Cargo.lock;
+            src = pkgs.lib.cleanSource ./.;
+          };
+        };
+
+        devShells.default = pkgs.mkShell {
           name = "Ghost";
-          buildInputs = [
+          buildInputs = with pkgs; [
             fd
             (rust-bin.stable.latest.default.override {
               extensions = [ "rust-src" ];
